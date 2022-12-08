@@ -7,12 +7,38 @@ import {
 } from './ProductCard.styled';
 
 import { Product } from '../../models';
+import { useContext, useEffect, useState } from 'react';
+import { ClothingShopContext } from '../../context/ShopContext';
 
 export const ProductCard = ({ name, imageUrl, price }: Product) => {
+  const {products, addToCart, removeItem} = useContext(ClothingShopContext);
+  const [isInCart, setIsInCart] = useState(false);
+
+  useEffect(() => {
+    const itemInCart = products.find((product: { name: string; }) => product.name === name);
+
+    if (itemInCart) {
+      setIsInCart(true);
+    } else {
+      setIsInCart(false);
+    }
+  }, [products, name]);
+
+  const handleClick = () => {
+    const product = {name, imageUrl, price};
+    if(isInCart){
+      removeItem(product);
+      setIsInCart(false);
+    } else{
+      addToCart(product);
+      setIsInCart(true);
+    }
+  }
+  
   return (
     <Wrapper background={imageUrl}>
-      <AddButton isInCart={false} onClick={() => console.log('Implement Me')}>
-        <p>+</p>
+      <AddButton isInCart={isInCart} onClick={handleClick}>
+        <p>{isInCart? "-" : "+"}</p>
       </AddButton>
       <TextContainer>
         <Title>{name}</Title>
