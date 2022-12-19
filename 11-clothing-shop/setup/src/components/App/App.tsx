@@ -7,9 +7,10 @@ import { useReducer } from 'react';
 import { shopReducer } from '../../reducers/reducer';
 import { initialState } from '../../reducers/state';
 import { Product } from '../../models/Product';
-import { add, remove, update } from '../../reducers/actions';
+import { add, addWish, remove, removeWish, update } from '../../reducers/actions';
 import { ClothingShopContext } from '../../context';
 import { Wishlist } from '../Wishlist';
+import { Item } from '../../models/Items';
 
 export const App = () => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
@@ -19,6 +20,20 @@ export const App = () => {
     updatePrice(updatedCart);
 
     dispatch(add(updatedCart));
+  };
+
+  const addToList = (item: Item) => {
+    const updatedCart = state.items.concat(item);
+
+    dispatch(addWish(updatedCart));
+  };
+
+  const removeList = (item: Item) => {
+    const updatedCart = state.items.filter(
+      (currentItem: Item) => currentItem.name !== item.name
+    );
+
+    dispatch(removeWish(updatedCart));
   };
   
   const removeItem = (product: Product) => {
@@ -40,8 +55,11 @@ export const App = () => {
   const value = {
     total: state.total,
     products: state.products,
-    addToCart,
-    removeItem
+    items: state.items,
+    addToCart: addToCart,
+    removeItem: removeItem,
+    addToList: addToList,
+    removeList: removeList
   }
 
   return (

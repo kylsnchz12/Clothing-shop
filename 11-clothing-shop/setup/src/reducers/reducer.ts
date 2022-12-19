@@ -20,6 +20,19 @@ export const shopReducer = (state: ShopState, action: ShopAction) => {
         ...state,
         total: action.payload,
       };
+    
+    case ShopActionType.WISHADD:
+      return {
+        ...state,
+        items: action.payload
+      };
+
+    case ShopActionType.WISHREMOVE:
+        return {
+          ...state,
+          items: action.payload
+        };
+
     default:
       return state;
   }
