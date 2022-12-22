@@ -11,7 +11,7 @@ export const Wishlist = () => {
         <Title>Your wishlist</Title>
         <ProductsWrapper>
             {items.map((item: Item, index) => (
-            <ProductCard {...item} key={index} />
+            <ProductCard quantity={0} {...item} key={index} />
         ))}
         </ProductsWrapper>
     </>

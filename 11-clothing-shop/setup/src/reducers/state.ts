@@ -8,7 +8,8 @@ export type ShopState = {
     addToCart: any,
     removeItem: any,
     addToList: any,
-    removeList: any
+    removeList: any,
+    updateItem: any
 }
 
 export const initialState = {
@@ -19,4 +20,5 @@ export const initialState = {
     removeItem: null,
     addToList: null,
     removeList: null,
+    updateItem: null
 }

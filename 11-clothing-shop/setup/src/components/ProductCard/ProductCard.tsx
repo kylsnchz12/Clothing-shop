@@ -13,7 +13,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ClothingShopContext } from '../../context/ShopContext';
 import { BsFillGiftFill } from "react-icons/bs"
 
-export const ProductCard = ({ name, imageUrl, price }: Product) => {
+export const ProductCard = ({ name, imageUrl, price, quantity }: Product) => {
   const {products, addToCart, removeItem} = useContext(ClothingShopContext);
   const [isInCart, setIsInCart] = useState(false);
   const [isInWishList, setIsInWishList] = useState(false);
@@ -30,7 +30,7 @@ export const ProductCard = ({ name, imageUrl, price }: Product) => {
   }, [products, name]);
 
   const handleClick = () => {
-    const product = {name, imageUrl, price};
+    const product = {name, imageUrl, price, quantity};
     if(isInCart){
       removeItem(product);
       setIsInCart(false);
@@ -51,7 +51,7 @@ export const ProductCard = ({ name, imageUrl, price }: Product) => {
   }, [items, name]);
 
   const handleWishListClick = () => {
-    const item = {name, imageUrl, price};
+    const item = {name, imageUrl, price, quantity};
     if(isInWishList){
       removeList(item)
       setIsInWishList(false)

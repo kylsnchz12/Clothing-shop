@@ -3,7 +3,7 @@ import { LinksWrapper, TitleWrapper, Wrapper } from './App.styled';
 
 import { Cart } from '../Cart';
 import { Products } from '../Products';
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { shopReducer } from '../../reducers/reducer';
 import { initialState } from '../../reducers/state';
 import { Product } from '../../models/Product';
@@ -17,14 +17,12 @@ export const App = () => {
   
   const addToCart = (product: Product) => {
     const updatedCart = state.products.concat(product);
-    updatePrice(updatedCart);
-
-    dispatch(add(updatedCart));
+      updatePrice(updatedCart);
+      dispatch(add(updatedCart));
   };
 
   const addToList = (item: Item) => {
     const updatedCart = state.items.concat(item);
-
     dispatch(addWish(updatedCart));
   };
 
@@ -47,11 +45,38 @@ export const App = () => {
   
   const updatePrice = (products: [] = []) => {
     let total = 0;
-    products.forEach((product: { price: number; }) => (total = total + product.price));
+    products.forEach((product: { price: number; quantity: number}) => {
+      if(product.quantity > 1){
+        total = total + (product.price * product.quantity)
+      } else {
+        total = total + product.price
+      }
+    });
 
     dispatch(update(total));
   };
+
+  const updateItem = (product: Product, status: String) => {
+    const updatedCart = state.products 
+
+    if(status === "Increment"){
+      updatedCart.map((item: Product) => {
+        if(item.name === product.name){
+          item.quantity = item.quantity+1;
+        }
+      })  
+    } else {
+      updatedCart.map((item: Product) => {
+        if(item.name === product.name){
+          item.quantity = item.quantity-1;
+        }
+      })  
+    }
+
+    updatePrice(updatedCart);
+  }
   
+
   const value = {
     total: state.total,
     products: state.products,
@@ -59,7 +84,8 @@ export const App = () => {
     addToCart: addToCart,
     removeItem: removeItem,
     addToList: addToList,
-    removeList: removeList
+    removeList: removeList,
+    updateItem: updateItem,
   }
 
   return (

@@ -1,11 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ClothingShopContext } from '../../context/ShopContext';
 import { Product } from '../../models/Product';
+import { ProductsInCart } from '../../ProductsInCart';
 import { ProductCard } from '../ProductCard/ProductCard';
-import { CheckOutButton, ProductsWrapper, Title, ButtonWrap } from './Cart.styled';
+import { CheckOutButton, ProductsWrapper, Title, ButtonWrap, CounterWrap, AddButton, RemoveButton, CounterButtonWrap } from './Cart.styled';
 
 export const Cart = () => {
   const { products, total } = useContext(ClothingShopContext);
+
   return (
     <>
       <ButtonWrap>
@@ -14,7 +16,7 @@ export const Cart = () => {
       </ButtonWrap>
       <ProductsWrapper>
         {products.map((product: Product, index) => (
-          <ProductCard {...product} key={index} />
+          <ProductsInCart {...product} key={index} />
         ))}
       </ProductsWrapper>
     </>
