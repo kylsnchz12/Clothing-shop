@@ -6,19 +6,19 @@ export const Title = styled.p`
   margin-top: 20px;
 `;
 
+export const TotalWrap = styled.div`
+  display: flex;
+  justify-content: end;
+`;
 export const ProductsWrapper = styled.div`
   display: grid;
-  width: fit-content;
-  grid-template-columns: repeat(2, auto);
-  gap: 20px;
+  justify-content: start;
+  gap: 22px;
 `;
 
 export const ButtonWrap = styled.div`
   display: flex;
-  align-items: center;
-  width: fit-content;
-  grid-template-columns: repeat(2, auto);
-  gap: 20px;
+  flex-direction: row;
 `;
 
 export const CheckOutButton = styled.button`

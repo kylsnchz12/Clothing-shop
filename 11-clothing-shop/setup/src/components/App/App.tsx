@@ -11,6 +11,7 @@ import { add, addWish, remove, removeWish, update } from '../../reducers/actions
 import { ClothingShopContext } from '../../context';
 import { Wishlist } from '../Wishlist';
 import { Item } from '../../models/Items';
+import { Checkout } from '../../Checkout';
 
 export const App = () => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
@@ -103,6 +104,7 @@ export const App = () => {
         <Route path='/' element={<Products />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/wishlist' element={<Wishlist />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </Wrapper>
     </ClothingShopContext.Provider>
