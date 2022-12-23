@@ -3,7 +3,7 @@ import { LinksWrapper, TitleWrapper, Wrapper } from './App.styled';
 
 import { Cart } from '../Cart';
 import { Products } from '../Products';
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
 import { shopReducer } from '../../reducers/reducer';
 import { initialState } from '../../reducers/state';
 import { Product } from '../../models/Product';

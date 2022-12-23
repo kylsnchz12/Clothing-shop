@@ -1,9 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ClothingShopContext } from '../context';
 import { Product } from '../models';
-import { ProductsInCart } from '../ProductsInCart';
-import { CheckOutButton, ProductsWrapper, Title, ButtonWrap, TotalWrap } from './Checkout.styled';
-import { BsFillCartCheckFill } from "react-icons/bs"
+import { ProductsWrapper, Title, TotalWrap } from './Checkout.styled';
 import { CheckoutCard } from '../CheckoutCard';
 
 export const Checkout = () => {

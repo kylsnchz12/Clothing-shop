@@ -8,7 +8,6 @@ import {
 } from './ProductCard.styled';
 
 import { Product } from '../../models';
-import { Item } from '../../models/Items';
 import { useContext, useEffect, useState } from 'react';
 import { ClothingShopContext } from '../../context/ShopContext';
 import { BsFillGiftFill } from "react-icons/bs"
